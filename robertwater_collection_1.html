@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robert J. Robertwater Jr. — Short Fiction Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+
+  /* ===================== RESET & BASE ===================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1410;
+    --cream: #f5f0e8;
+    --parchment: #ede5d0;
+    --gold: #c9a84c;
+    --gold-light: #e8cc80;
+    --forest: #2c3e2d;
+    --mist: #8a9ba0;
+    --crimson: #8b1a1a;
+    --warm-white: #faf7f2;
+    --chapter-border: #c9a84c44;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* ===================== NAVIGATION ===================== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 48px;
+    background: linear-gradient(to bottom, rgba(26,20,16,0.97), transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-author {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a, .nav-btn {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    text-decoration: none;
+    transition: color 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .nav-links a:hover, .nav-btn:hover { color: var(--gold-light); }
+
+  /* ===================== LANDING / HERO ===================== */
+  #landing {
+    height: 100vh;
+    min-height: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 60%, #2a1f1080 0%, var(--ink) 70%);
+  }
+
+  .hero-ornament {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 28px;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: fadeUp 1.2s 0.2s ease both;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--mist);
+    letter-spacing: 0.06em;
+    margin-bottom: 48px;
+    animation: fadeUp 1.2s 0.35s ease both;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 48px;
+    animation: fadeUp 1.2s 0.45s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 24px;
+    animation: fadeUp 1.2s 0.55s ease both;
+  }
+
+  .btn {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 36px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .btn:hover {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .btn-solid {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .btn-solid:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  /* Floating particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: drift linear infinite;
+  }
+
+  /* ===================== COLLECTION SHELF ===================== */
+  #shelf {
+    padding: 120px 48px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: var(--cream);
+    margin-bottom: 64px;
+    font-weight: 400;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px 80px;
+  }
+
+  /* ===================== BOOK CARD ===================== */
+  .book-card {
+    cursor: pointer;
+    transition: transform 0.4s ease;
+  }
+
+  .book-card:hover { transform: translateY(-8px); }
+
+  .book-cover {
+    position: relative;
+    aspect-ratio: 6/9;
+    overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: -8px 12px 40px rgba(0,0,0,0.7), 4px 4px 0 #0006;
+  }
+
+  /* Chain of Heaven cover — misty forest */
+  .cover-chain {
+    background:
+      linear-gradient(to bottom, #1a1e2a 0%, #2d3545 25%, #4a3d35 55%, #2a1f18 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .cover-chain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, #3d4a3080 0%, transparent 60%),
+      radial-gradient(ellipse 40% 80% at 50% 100%, #1a100880 0%, transparent 50%);
+  }
+
+  /* Tree silhouettes */
+  .cover-chain .trees {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 75%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .tree {
+    background: #0d0d0f;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .tree::before, .tree::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0d0d0f;
+    border-radius: 1px;
+  }
+
+  .cover-chain .mist-layer {
+    position: absolute;
+    left: 0; right: 0;
+    height: 35%;
+    top: 25%;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(160,175,180,0.12) 40%,
+      rgba(140,160,165,0.18) 55%,
+      rgba(120,140,148,0.08) 70%,
+      transparent 100%);
+    filter: blur(3px);
+  }
+
+  .cover-chain .gold-glow {
+    position: absolute;
+    width: 120px; height: 120px;
+    top: 30%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(201,168,76,0.22) 0%, transparent 70%);
+  }
+
+  .cover-text-chain {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px 20px 30px;
+    background: linear-gradient(transparent, rgba(13,8,5,0.9) 40%);
+  }
+
+  .cover-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    color: #e8dfc8;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .cover-author-name {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+  }
+
+  /* Pussy Pie cover — warm Southern kitchen */
+  .cover-pie {
+    background:
+      linear-gradient(135deg, #3d1f0a 0%, #6b3518 30%, #8b4a20 55%, #4a2510 80%, #2a1208 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .cover-pie::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 45%, rgba(220,160,60,0.25) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 30% at 50% 80%, rgba(180,100,30,0.3) 0%, transparent 60%);
+  }
+
+  .cover-pie .steam {
+    position: absolute;
+    bottom: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .steam-curl {
+    display: inline-block;
+    width: 3px;
+    height: 40px;
+    background: linear-gradient(to top, rgba(255,240,200,0.6), transparent);
+    border-radius: 4px;
+    margin: 0 6px;
+    animation: steamRise 2.5s ease-in-out infinite;
+    transform-origin: bottom;
+  }
+
+  .steam-curl:nth-child(2) { animation-delay: 0.6s; height: 55px; }
+  .steam-curl:nth-child(3) { animation-delay: 1.2s; height: 35px; }
+
+  .cover-pie-dish {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 28px;
+    background: linear-gradient(to bottom, #c8814a, #8b5020);
+    border-radius: 0 0 50% 50% / 0 0 18px 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+  }
+
+  .cover-pie-dish::before {
+    content: '';
+    position: absolute;
+    top: -14px; left: -10px; right: -10px;
+    height: 28px;
+    background: linear-gradient(to bottom, #d4955a, #b07040);
+    border-radius: 50% 50% 30% 30% / 15px 15px 8px 8px;
+    box-shadow: inset 0 -4px 8px rgba(0,0,0,0.2);
+  }
+
+  .cover-pie-dish::after {
+    content: '';
+    position: absolute;
+    top: -18px; left: 25px; right: 25px;
+    height: 6px;
+    background: linear-gradient(to right, #c8814a, #d4955a, #c8814a);
+    border-radius: 3px;
+    /* decorative crust crimps */
+    box-shadow:
+      -12px 0 0 #c8814a, -24px 0 0 #c8814a,
+      12px 0 0 #c8814a, 24px 0 0 #c8814a;
+  }
+
+  .cover-text-pie {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    margin-top: -20%;
+  }
+
+  .cover-text-pie .cover-title {
+    color: #f5e8c8;
+    font-size: 0.95rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  }
+
+  .cover-text-pie .cover-author-name {
+    color: var(--gold-light);
+  }
+
+  /* Glint overlay on covers */
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+
+  .book-card:hover .book-cover::after { left: 150%; }
+
+  .book-meta {
+    padding: 0 4px;
+  }
+
+  .book-genre {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .book-title-card {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: var(--cream);
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .book-blurb {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--mist);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .read-link {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: gap 0.3s, color 0.3s;
+  }
+
+  .read-link::after {
+    content: '→';
+    font-size: 14px;
+  }
+
+  .read-link:hover { gap: 18px; color: var(--gold-light); }
+
+  /* ===================== READER MODAL ===================== */
+  .reader-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(10,7,5,0.97);
+    overflow-y: auto;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .reader-overlay.active { display: block; }
+
+  .reader-header {
+    position: sticky;
+    top: 0;
+    background: rgba(10,7,5,0.96);
+    border-bottom: 1px solid #ffffff0f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  .reader-breadcrumb {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+
+  .reader-breadcrumb span { color: var(--gold); }
+
+  .close-btn {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+    padding: 8px 0;
+  }
+
+  .close-btn:hover { color: var(--cream); }
+
+  .reader-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 48px 120px;
+  }
+
+  /* Cover spread inside reader */
+  .story-cover-spread {
+    width: 100%;
+    aspect-ratio: 6/9;
+    max-height: 580px;
+    margin: 0 auto 80px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  }
+
+  .story-title-page {
+    text-align: center;
+    padding: 60px 0 80px;
+    border-bottom: 1px solid var(--chapter-border);
+    margin-bottom: 72px;
+  }
+
+  .story-main-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    color: var(--cream);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .story-byline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--mist);
+  }
+
+  /* Chapter headings */
+  .chapter-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 72px 0 28px;
+    padding-top: 48px;
+    border-top: 1px solid var(--chapter-border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .chapter-heading::before {
+    content: '✦';
+    font-size: 0.7em;
+    opacity: 0.6;
+  }
+
+  /* Story prose */
+  .prose p {
+    margin-bottom: 1.5em;
+    text-align: justify;
+    text-indent: 2em;
+    color: #d4cfc5;
+    font-size: 1.05rem;
+  }
+
+  .prose p:first-of-type { text-indent: 0; }
+
+  .prose p:first-of-type::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 3.8em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.8;
+    margin: 0.08em 0.1em 0 0;
+    color: var(--gold);
+  }
+
+  .prose em {
+    font-style: italic;
+    color: var(--cream);
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  /* Quote / interior thought styling */
+  .prose .inner-voice {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--cream);
+    opacity: 0.85;
+    margin: 2.5em auto;
+    max-width: 480px;
+    line-height: 1.7;
+    text-indent: 0 !important;
+  }
+
+  /* Story separator */
+  .story-end {
+    text-align: center;
+    padding: 80px 0 40px;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 0.4em;
+    opacity: 0.5;
+  }
+
+  /* ===================== ABOUT / FOOTER ===================== */
+  #about {
+    padding: 100px 48px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid #ffffff0a;
+  }
+
+  .about-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .about-bio {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--mist);
+    line-height: 1.9;
+  }
+
+  .about-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #ffffff25;
+  }
+
+  /* ===================== ANIMATIONS ===================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes steamRise {
+    0%   { transform: scaleY(0) translateY(0); opacity: 0; }
+    30%  { opacity: 0.7; }
+    80%  { transform: scaleY(1.2) translateY(-20px); opacity: 0.4; }
+    100% { transform: scaleY(1.4) translateY(-30px); opacity: 0; }
+  }
+
+  @keyframes drift {
+    0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-20px) translateX(var(--dx, 30px)); opacity: 0; }
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { gap: 20px; }
+    #shelf { padding: 80px 24px; }
+    .reader-body { padding: 60px 24px 80px; }
+    .reader-header { padding: 16px 24px; }
+    #about { padding: 80px 24px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ========== NAVIGATION ========== -->
+<nav>
+  <div class="nav-author">Robert J. Robertwater Jr.</div>
+  <ul class="nav-links">
+    <li><button class="nav-btn" onclick="document.getElementById('shelf').scrollIntoView({behavior:'smooth'})">Stories</button></li>
+    <li><button class="nav-btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</button></li>
+  </ul>
+</nav>
+
+
+<!-- ========== HERO / LANDING ========== -->
+<section id="landing">
+
+  <!-- Floating gold particles -->
+  <div class="particles" id="particles"></div>
+
+  <p class="hero-ornament">✦ &nbsp; A Collection of Short Fiction &nbsp; ✦</p>
+  <h1 class="hero-title">Stories That<br>Reach Into the Dark</h1>
+  <p class="hero-subtitle">Where the buried truth wakes, and the magic hides in plain sight.</p>
+  <div class="hero-divider"></div>
+  <div class="hero-cta">
+    <button class="btn btn-solid" onclick="document.getElementById('shelf').scrollIntoView({behavior:'smooth'})">Browse Stories</button>
+    <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About the Author</button>
+  </div>
+
+</section>
+
+
+<!-- ========== COLLECTION SHELF ========== -->
+<section id="shelf">
+  <p class="section-label">The Collection</p>
+  <h2 class="section-title">Short Fiction by Robert J. Robertwater Jr.</h2>
+
+  <div class="books-grid">
+
+    <!-- ── BOOK 1: THE CHAIN OF HEAVEN ── -->
+    <article class="book-card" onclick="openReader('chain')">
+      <div class="book-cover cover-chain">
+        <!-- Mist layer -->
+        <div class="mist-layer"></div>
+        <!-- Gold glow at center -->
+        <div class="gold-glow"></div>
+        <!-- Tree silhouettes via CSS -->
+        <div class="trees" id="trees-chain"></div>
+        <div class="cover-text-chain">
+          <div class="cover-title">THE CHAIN<br>OF HEAVEN</div>
+          <div class="cover-author-name">Robert J. Robertwater, Jr</div>
+        </div>
+      </div>
+      <div class="book-meta">
+        <p class="book-genre">Supernatural Thriller</p>
+        <h3 class="book-title-card">The Chain of Heaven</h3>
+        <p class="book-blurb">When an earthquake splits a mountain and reveals a golden cage buried in the stone, the town of Sable Ridge wakes to something older than heaven itself.</p>
+        <a href="#" class="read-link" onclick="event.preventDefault(); openReader('chain')">Read Story</a>
+      </div>
+    </article>
+
+    <!-- ── BOOK 2: I STOLE THE PUSSY PIE ── -->
+    <article class="book-card" onclick="openReader('pie')">
+      <div class="book-cover cover-pie">
+        <div class="steam">
+          <span class="steam-curl"></span>
+          <span class="steam-curl"></span>
+          <span class="steam-curl"></span>
+        </div>
+        <div class="cover-pie-dish"></div>
+        <div class="cover-text-pie">
+          <div class="cover-title">I STOLE THE<br>PUSSY PIE</div>
+          <div class="cover-author-name">Robert J. Robertwater, Jr</div>
+        </div>
+      </div>
+      <div class="book-meta">
+        <p class="book-genre">Southern Magical Realism</p>
+        <h3 class="book-title-card">I Stole the Pussy Pie</h3>
+        <p class="book-blurb">In Magnolia Heights, Miss Lacey bakes pies that carry truth inside them. One stolen slice, and a whole life changes — if you're willing to face the fire behind the sweetness.</p>
+        <a href="#" class="read-link" onclick="event.preventDefault(); openReader('pie')">Read Story</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ========== ABOUT ========== -->
+<section id="about">
+  <p class="about-label">The Author</p>
+  <h3 class="about-name">Robert J. Robertwater Jr.</h3>
+  <p class="about-bio">
+    A writer of short fiction whose work moves between the supernatural and the deeply human — 
+    between the buried thing that resurfaces and the ordinary magic hiding in a kitchen window, 
+    a stolen slice, a voice riding the wind at 2 a.m. His stories ask what we carry, what we 
+    bury, and what refuses to stay down.
+  </p>
+</section>
+
+<footer>
+  &copy; Robert J. Robertwater Jr. &nbsp;·&nbsp; All rights reserved.
+</footer>
+
+
+<!-- ========== READER MODAL ========== -->
+<div class="reader-overlay" id="readerOverlay">
+
+  <div class="reader-header">
+    <span class="reader-breadcrumb">Collection &rsaquo; <span id="readerBreadcrumb">Story</span></span>
+    <button class="close-btn" onclick="closeReader()">✕ &nbsp; Close</button>
+  </div>
+
+  <!-- CHAIN OF HEAVEN CONTENT -->
+  <div class="reader-body" id="content-chain" style="display:none">
+
+    <div class="story-cover-spread cover-chain" style="aspect-ratio:6/9; max-height:520px;">
+      <div class="mist-layer"></div>
+      <div class="gold-glow"></div>
+      <div class="trees" id="trees-chain-reader"></div>
+      <div class="cover-text-chain">
+        <div class="cover-title" style="font-size:1.6rem; margin-bottom:14px;">THE CHAIN OF HEAVEN</div>
+        <div class="cover-author-name" style="font-size:0.75rem;">Robert J. Robertwater, Jr</div>
+      </div>
+    </div>
+
+    <div class="story-title-page">
+      <h1 class="story-main-title">The Chain of Heaven</h1>
+      <p class="story-byline">by Robert J. Robertwater Jr.</p>
+    </div>
+
+    <div class="prose">
+
+      <div class="chapter-heading">Chapter One &mdash; The Rattle Beneath</div>
+      <p>It began with the earth groaning beneath the mountain town of Sable Ridge.</p>
+      <p>Just after midnight, the ground shuddered — first a low, rolling moan in the deep places of the world, then a violent tremor that rattled windows and split foundations. Houses cracked, glass shattered, and along the old logging road a rockslide tore through the hillside, scattering pines like matchsticks.</p>
+      <p>When the dust cleared, the mountain had revealed its secret. Buried in stone was a gleam of gold, coils of metal wound around a coffin darkened with age.</p>
+      <p>That was when the dreams began.</p>
+
+      <div class="chapter-heading">Chapter Two &mdash; Bubba's Warning</div>
+      <p>Bubba Thornton had lived through everything the mountain could throw at him — floods, fires, blizzards. Sixty-eight years in Sable Ridge had hardened him against disaster, but nothing like this.</p>
+      <p>He sat on his porch with a half-burnt cigar clenched in his teeth, eyes fixed on the smoke rising from the hills where the quake had struck. The ground still thrummed beneath the boards of his porch, a restless hum that wouldn't quit. His fingers tapped against the stock of his old shotgun, steady as a heartbeat.</p>
+      <p>"That wasn't no ordinary quake," he muttered.</p>
+      <p>Carl Jennings, the young history teacher, appeared in the doorway, wild-eyed, gasping for breath. "Bubba — did you see it? Down at Hunter's Pass. There's gold&hellip; something big."</p>
+      <p>Bubba didn't answer right away. He drew on his cigar, let the smoke curl into the night. "It ain't just gold, Carl. Whatever's down there — wasn't meant to be found."</p>
+      <p>Carl stepped closer, frantic. "Then it's a sign, right? The earth's telling us something."</p>
+      <p>Bubba rose, his back stiff with age, gaze fixed on the shadows creeping between the trees. His voice dropped low, as if he feared the woods might overhear. "A sign, sure. But not the kind you want. That quake was a warning, boy. A warning you didn't hear."</p>
+
+      <div class="chapter-heading">Chapter Three &mdash; The Crip</div>
+      <p>By morning, Sable Ridge was buzzing. Brenda Kole, the geologist, arrived at the site with Carl and Michael Reyes — the EMT who'd come to the mountains to bury his past. Carl's journal was already thick with sketches: the golden lattice, the strange sigils etched into the stone.</p>
+      <p>Brenda, skeptical but thorough, recorded seismic spikes and collected samples. Then her hand brushed the gold. It yielded under her touch, soft as clay, yet it thrummed with a pulse that wasn't hers.</p>
+      <p>Nika Harper arrived last, the young folklorist who had been tracing the town's occult histories. She knelt in the dirt, eyes wide, hands trembling as she traced a broken chain still half-buried in earth.</p>
+      <p>"This isn't legend," she whispered. "This is the Crip."</p>
+      <p>Michael frowned. "The Crip? Sounds like a ghost story."</p>
+      <p>Nika shook her head. "Not a story. A memory. They say this is where they buried the first angel — Christopher. She didn't just defy Heaven. She tried to unite both realms. And they betrayed her."</p>
+      <p>Carl blinked. "Christopher? Sounds like a man's name."</p>
+      <p>Nika's gaze hardened. "Not this one."</p>
+
+      <div class="chapter-heading">Chapter Four &mdash; The Awakening</div>
+      <p>Randell was the first to see her. Driving back from the store, his headlights cut through the fog — and caught a figure standing in the road.</p>
+      <p>Tall. Barefoot. Wings folded behind her like obsidian blades. Her hair fell in silver-black locks, and her eyes burned with molten gold.</p>
+      <p>She did not move.</p>
+      <p>He blinked, and she was gone.</p>
+      <p>By dawn, the sky above Sable Ridge had soured to a sickly orange, the air heavy with the taste of iron. Animals fled the forests. Whispers rode the wind. And that night, every soul in town — Bubba, Carl, Michael, Brenda, Nika, and Randell — woke from the same dream, the same voice echoing in their skulls.</p>
+      <p class="inner-voice">
+        <em>I was the first.<br>I remember the truth.<br>And I will not be forgotten.</em>
+      </p>
+
+      <div class="chapter-heading">Chapter Five &mdash; The Guardians</div>
+      <p>They came like shadows carried on the wind.</p>
+      <p>The Dominion of Flame. Robes of black and silver, eyes pale and empty. At their head walked Father Tiberius, blind gaze lifted toward the mountains. They brought no warning, no parley — only death.</p>
+      <p>"Erase it," Tiberius commanded. "Kill them. Bury the truth."</p>
+      <p>Bubba had warned them. Now the reckoning had come.</p>
+      <p>Brenda's body was found in the woods at dawn, a holy sigil seared into her chest. Carl vanished next, his journal abandoned in the road. Those who remained — Michael, Nika, Randell, Bubba — understood too late that their search had led them into a war older than the world.</p>
+      <p>"Why?" Michael gasped as the Dominion closed in.</p>
+      <p>Nika's gaze lifted skyward, where armored angels clashed in a storm of wings and steel. "Because they fear her. Because she remembers what Heaven was — and what it became."</p>
+
+      <div class="chapter-heading">Chapter Six &mdash; Christopher Rises</div>
+      <p>The earth split. The golden cage cracked open.</p>
+      <p>From the dust and fire she rose — Christopher, the Firstborn. Her wings stretched wide, dark as a stormfront, beautiful and terrible. Her eyes burned with truths long buried, and when she spoke, the world seemed to shudder.</p>
+      <p class="inner-voice">
+        <em>"You built Heaven on silence.<br>You built Hell on fear.<br>I was the Alpha.<br>Now I am the Reckoning."</em>
+      </p>
+      <p>Her scream tore the sky asunder. The Dominion charged, blades raised, but it was too late.</p>
+      <p>The truth was awake.</p>
+
+      <div class="chapter-heading">Chapter Seven &mdash; Living in Fear</div>
+      <p>The survivors were few, scattered like embers across the land.</p>
+      <p>Michael moved north and never stopped moving. Nika published nothing — her notes locked in a fireproof safe, her lips sealed, though at night she still heard the voice in that velvet resonance that was neither human nor divine. Randell stopped driving after dark. Bubba Thornton sat back on his porch, fresh cigar, fresh shotgun, eyes on the treeline.</p>
+      <p>They all watched the sky differently now. Not with wonder.</p>
+      <p>With memory.</p>
+      <p>Somewhere above Sable Ridge, a chain of gold lay broken in the rubble of the mountain. And somewhere in the spaces between storm clouds, something vast turned its burning eyes toward the horizon — not in anger, not in vengeance.</p>
+      <p>In grief.</p>
+      <p>In grief for everything that had been built on silence, and everything that had to burn before the truth could breathe again.</p>
+
+    </div>
+    <div class="story-end">✦ &nbsp; &nbsp; ✦ &nbsp; &nbsp; ✦</div>
+
+  </div>
+
+  <!-- PUSSY PIE CONTENT -->
+  <div class="reader-body" id="content-pie" style="display:none">
+
+    <div class="story-cover-spread cover-pie" style="aspect-ratio:6/9; max-height:520px;">
+      <div class="steam">
+        <span class="steam-curl"></span>
+        <span class="steam-curl"></span>
+        <span class="steam-curl"></span>
+      </div>
+      <div class="cover-pie-dish"></div>
+      <div class="cover-text-pie">
+        <div class="cover-title" style="font-size:1.6rem; margin-bottom:14px;">I STOLE THE<br>PUSSY PIE</div>
+        <div class="cover-author-name" style="font-size:0.75rem;">Robert J. Robertwater, Jr</div>
+      </div>
+    </div>
+
+    <div class="story-title-page">
+      <h1 class="story-main-title">I Stole the Pussy Pie</h1>
+      <p class="story-byline">by Robert J. Robertwater Jr.</p>
+    </div>
+
+    <div class="prose">
+
+      <p>Everybody in Magnolia Heights knew Miss Lacey could bake. But what most didn't know was that she hadn't always lived there. She'd grown up in a dusty town two counties over, where her mother ran a diner famous for pies that could make grown men cry. From her, Lacey learned two secrets: how to knead magic into dough, and how to read people without them saying a word.</p>
+      <p>By sixteen, she was already baking desserts that felt alive — cakes that smelled like forgiveness, pies that tasted like memories, biscuits that could heal a hard day. She traveled across cities and states, leaving behind whispers of a "pie that changes you," until she returned to Magnolia Heights seeking quiet. That's where the Pussy Pie was born, her most guarded creation. It wasn't just dessert; it was a test, a secret, and a little bit of magic wrapped in a golden crust.</p>
+      <p>Me? I didn't know any of that. I just knew the rumors. The "Pussy Pie" was supposed to be legendary. I wasn't the kind of person to let legend intimidate me — I wanted proof. And on that cool, quiet night, I found myself sneaking behind Miss Lacey's café, drawn by the smell of something warm and intoxicating.</p>
+      <p>Inside, on the cooling rack, sat the golden prize, steam rising like it had a heartbeat. A little tag read: <strong>"Do not touch."</strong></p>
+      <p>I touched. Actually, I didn't just touch — I slid it into a to-go box and walked out, heart racing, thinking I was clever.</p>
+      <p>Back home, I stared at the stolen masterpiece. One slice, just one. That's all I planned. But the first bite&hellip; oh man. It tasted like secrets, like someone whispering truths I didn't even know I carried. It tasted like courage. Like danger. Like magic. Before I knew it, half the pie was gone, and I was feeling&hellip; changed.</p>
+      <p>At 2 a.m., drawn by a mix of guilt and fascination, I knocked on Miss Lacey's door. She opened it slowly, robe tied loosely, eyes sharp but curious.</p>
+      <p>"You stole my pie," she said.</p>
+      <p>I swallowed. "Yeah&hellip; but I came to return the favor."</p>
+      <p>She studied me like she could see straight through my chest. Then she stepped aside, just enough for me to slip past.</p>
+      <p>"You better hope," she said, "you can handle the whole recipe."</p>
+      <p>That's when I realized: the pie wasn't the real test. <strong>Miss Lacey was.</strong></p>
+      <p>And over the coming weeks, she became more than a legend to me. She taught me that magic isn't in the ingredients, it's in knowing who can carry it. That curiosity has consequences, and courage can taste like sugar&hellip; if you're willing to face the fire behind it.</p>
+      <p>By the time I left Magnolia Heights that spring, I hadn't just eaten the pie. I'd been changed by it, by her, by the way someone ordinary can hold a little extraordinary in their hands.</p>
+      <p>And I never stole another pie again — at least, not without permission.</p>
+
+      <div class="chapter-heading">Chapter Two &mdash; The Secret Recipe</div>
+      <p>A week after the infamous pie incident, I found myself back at Miss Lacey's café — not to steal, but to learn. She had left a note on my door:</p>
+      <p class="inner-voice"><em>"Curiosity is a gift, but only for those who can handle it. Come by at dawn."</em></p>
+      <p>I arrived before the sun had even cracked the sky, the air still smelling of damp earth and something sweet I couldn't name. Miss Lacey was already there, apron dusted with flour, a small rolling pin in her hands like a conductor's baton.</p>
+      <p>"You want to understand the pie?" she asked, eyes narrowing with that familiar gleam.</p>
+      <p>"Yes," I admitted. "I want to know why it tastes&hellip; different. Why it feels like it's alive."</p>
+      <p>She chuckled softly, a sound like wind through dry leaves. "Most people can't handle knowing. Most people just want a taste. But you&hellip; maybe you're ready."</p>
+      <p>She handed me a notebook, worn and leather-bound. Pages were filled with recipes, yes, but also strange notes — phrases like <em>"Add courage with a pinch of moonlight"</em> or <em>"Let regrets rest overnight, then fold them gently into the dough."</em> It was nonsense&hellip; or magic.</p>
+      <p>"Everything I bake," she said, "carries a piece of the baker. A memory, a feeling, a choice. That's why some things change you, and some don't. You took the pie, yes, but you also took a piece of me. And now&hellip; you've got to prove you're worthy of the rest."</p>
+      <p>I stared at her, heart racing. "Prove? How?"</p>
+      <p>She gestured to the counter. Ingredients were laid out: honey from the hills, citrus from some forgotten orchard, a small vial of something glowing faintly blue. "We bake," she said simply. "You follow my instructions exactly. One mistake, one hesitation, and the magic doesn't work. You'll know what I mean when you see it."</p>
+      <p>I rolled up my sleeves. My life had never felt so thrilling and terrifying at once. Flour dusted my hands, eggs cracked in perfect rhythm, and every motion felt like a test — not of skill, but of character.</p>
+      <p>When the final step came — folding the last ingredient into the dough — I hesitated. My fingers shook. I could feel the pie <em>watching me</em>, like it knew if I was honest or hiding something.</p>
+      <p>Miss Lacey placed her hand over mine. "Trust yourself," she said. "The pie will tell you what it needs. You just have to listen."</p>
+      <p>I listened.</p>
+      <p>The oven door closed. Time stretched. When the pie emerged, golden and steaming, I felt it before I tasted it — an energy pulsing from the crust like the heartbeat of the café itself. I took a small slice.</p>
+      <p>The flavor wasn't just alive — it was aware. It whispered encouragement, soothed fear, and somehow&hellip; reflected a truth about me I didn't know.</p>
+      <p>Miss Lacey smiled. "See? You're ready. But remember&hellip; this is just the beginning. Baking magic is easy. Handling it&hellip; that's the real test."</p>
+      <p>I knew then that I wasn't just a thief who had tasted legend. I was now an apprentice in something far bigger, far stranger, and far more dangerous than I had ever imagined.</p>
+      <p>And as I left the café, pie in hand and head buzzing, I realized one thing: life with Miss Lacey would never be ordinary again.</p>
+
+      <div class="chapter-heading">Chapter Three &mdash; The Shadows in the Dough</div>
+      <p>I didn't realize how much Miss Lacey's pies could take from you until the night the darkness arrived.</p>
+      <p>Weeks had passed since I became her apprentice. My days were filled with the smell of flour, honey, and citrus; my nights haunted by the memory of that first pie I stole. Miss Lacey rarely spoke of the dangers. She only said, <em>"Magic has a price. It's up to you if you can pay it."</em></p>
+      <p>I thought I understood. I didn't.</p>
+      <p>One evening, she handed me a small, cracked bowl. Inside, the dough shimmered in an unnatural twilight blue. "This isn't just a pie," she said quietly, eyes sharp. "This one tests desire. Greed. Fear. You have to bake it without thinking of yourself. One slip&hellip; and it takes what it wants."</p>
+      <p>I laughed nervously. "It&hellip; takes what it wants?"</p>
+      <p>She nodded. "Don't be careless. Some ingredients carry&hellip; consequences. The magic isn't always kind."</p>
+      <p>I mixed, folded, kneaded. Sweat dripped from my brow, hands trembling. The dough pulsed faintly, as though alive, and I felt something crawling in my chest, whispering temptations I didn't recognize. I wanted to finish it, but a tiny voice inside me said: <em>Stop. You shouldn't.</em></p>
+      <p>I ignored it.</p>
+      <p>The oven door closed. The kitchen grew quiet, too quiet. Then, I heard it: whispers, soft at first, then louder. Shadows shifted in the corners of the room. The pie had taken on a strange, dark sheen, almost black at the edges, like it had absorbed the night itself.</p>
+      <p>Miss Lacey didn't flinch. She only said: "The pie reveals truths. Some aren't easy to face."</p>
+      <p>I took a slice. And everything changed.</p>
+      <p>Memories I had buried — greed, lies, selfish choices — flashed in my mind. I felt my desires twisting inside me, darker than before, raw and hungry. I dropped the fork. The kitchen seemed to breathe, alive with the energy of the pie.</p>
+      <p>I realized then: the pie didn't just test you. It could <strong>consume you</strong>, strip away what you pretended to be, and force you to confront the shadows inside yourself.</p>
+      <p>Miss Lacey watched me from across the counter, arms folded, face unreadable. Then, quietly, she said: "The ones who face it — they come back stronger. The ones who run from it&hellip;" She let the sentence hang in the warm kitchen air like smoke.</p>
+      <p>I set the fork down. I breathed. And for the first time in my life, I decided not to run.</p>
+
+    </div>
+    <div class="story-end">✦ &nbsp; &nbsp; ✦ &nbsp; &nbsp; ✦</div>
+
+  </div>
+
+</div><!-- end reader overlay -->
+
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+
+  // ── Generate tree silhouettes ──
+  function buildTrees(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const config = [
+      {w:18, h:'72%'}, {w:14, h:'58%'}, {w:20, h:'80%'},
+      {w:12, h:'50%'}, {w:22, h:'85%'}, {w:16, h:'65%'},
+      {w:10, h:'48%'}, {w:24, h:'88%'}, {w:14, h:'62%'},
+      {w:18, h:'75%'}, {w:12, h:'54%'}, {w:20, h:'78%'},
+    ];
+    config.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'tree';
+      el.style.cssText = `width:${t.w}px; height:${t.h}; opacity:${0.7 + Math.random()*0.3}`;
+      container.appendChild(el);
+    });
+  }
+
+  buildTrees('trees-chain');
+  buildTrees('trees-chain-reader');
+
+  // ── Floating particles on hero ──
+  (function() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const left = Math.random() * 100;
+      const delay = Math.random() * 12;
+      const dur   = 10 + Math.random() * 16;
+      const dx    = (Math.random() - 0.5) * 100;
+      p.style.cssText = `
+        left:${left}%;
+        bottom:-10px;
+        animation-duration:${dur}s;
+        animation-delay:${delay}s;
+        --dx:${dx}px;
+        opacity:0;
+      `;
+      container.appendChild(p);
+    }
+  })();
+
+  // ── Reader open/close ──
+  function openReader(story) {
+    const overlay = document.getElementById('readerOverlay');
+    const breadcrumb = document.getElementById('readerBreadcrumb');
+
+    document.getElementById('content-chain').style.display = 'none';
+    document.getElementById('content-pie').style.display   = 'none';
+
+    if (story === 'chain') {
+      document.getElementById('content-chain').style.display = 'block';
+      breadcrumb.textContent = 'The Chain of Heaven';
+    } else {
+      document.getElementById('content-pie').style.display = 'block';
+      breadcrumb.textContent = 'I Stole the Pussy Pie';
+    }
+
+    overlay.classList.add('active');
+    overlay.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    buildTrees('trees-chain-reader');
+  }
+
+  function closeReader() {
+    document.getElementById('readerOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeReader();
+  });
+
+</script>
+
+</body>
+</html>
